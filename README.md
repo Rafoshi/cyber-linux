@@ -111,5 +111,25 @@ iface enp0s9 inet static
    - **Permissão para todos**: `chmod 777 pasta_protegida` e `chmod 777 pasta_protegida/arquivo.txt`
 8. **Trocar de usuário**: `su - novo_usuario`
 9. **Trocar para root**: `su`
+---------
+```python
+import http.server
+import socketserver
 
+
+class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
+    def send_error(self, code, message=None, explain=None):
+        if code == 404:
+            code = 403
+        super().send_error(code, message, explain)
+
+
+PORT = 8000
+
+with socketserver.TCPServer(("", PORT), CustomHTTPRequestHandler) as httpd:
+    print(f"Servidor HTTP rodando na porta {PORT}")
+    httpd.serve_forever()
+
+
+```
 
