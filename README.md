@@ -45,7 +45,59 @@ su - novo_usuario
 ```bash
 su
 ```
+## servidor python
+Agora voce pode rodar o servidor python (lembre de mudar de usuario mas n use o root)
+```bash
+python -m http.server 8000
+```
+ou
 
+```bash
+python -m http.server 8000 --directory /home/
+```
+
+
+## relembrar a config de ip
+
+Dentro do linux
+```bash
+ip -br -c a
+```
+No Windows
+
+```bash
+ipconfig
+```
+Configurar intefaces de rede no linux
+
+nano
+```bash
+nano /etc/network/interfaces
+```
+Vim
+```bash
+vim /etc/network/interfaces
+```
+
+```bash
+# Configuração NAT para a interface enp0s3
+auto enp0s3
+iface enp0s3 inet dhcp
+
+# Configuração NAT para a interface enp0s3
+auto enp0s8
+iface enp0s8 inet dhcp
+
+# Configuração de Rede Interna para a interface enp0s9
+auto enp0s9
+iface enp0s9 inet static
+    address 192.168.1.2    # Endereço IP fixo para a máquina virtual
+    netmask 255.255.255.0   # Máscara de sub-rede
+    gateway 192.168.1.1     # Gateway para a rede interna (opcional)
+
+```
+
+##Boa sorte
 ### Resumo das principais etapas:
 
 1. **Criar usuário**: `sudo adduser usuario_exemplo`
